@@ -19,6 +19,12 @@ import (
 	4. Sending a welcome email
 
 	They are doing too many things. It violates the Single Responsibility Principle.
+
+	Problems with this:
+	1. If email validation rules change → modify this code
+	2. If database changes → modify this code
+	3. If email service changes → modify this code
+	4. Too many reasons to change!
 */
 
 type UserManagement struct{}
@@ -46,6 +52,11 @@ func (um *UserManagement) CreateUser(name, email string) {
 	Now, we can use these structs to create a UserManagementService that will create a user.
 
 	In this way, we have separated the responsibilities of the UserManagement struct into three separate structs.
+
+	The Simple Rules
+	1. One job per struct/function
+	2. One reason to change
+	3. If you can describe what your code does with "AND", it's probably doing too much
 */
 
 type User struct {
